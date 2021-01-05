@@ -5,6 +5,7 @@ import { LRUMap } from "lru_map";
 import {
   IProgram,
   IStudent,
+  IStudentEmployed,
   IStudentDropout,
   STUDENT_PROGRAM_TABLE,
   STUDENT_TABLE,
@@ -15,21 +16,6 @@ import {
   StudentEmployedTable,
 } from "../db/tables";
 import { TermDataLoader } from "./term";
-
-export const StudentEmployedDataLoader = new DataLoader(
-  async (student_ids: readonly string[]) => {
-    return await Promise.all(
-      student_ids.map((student_id) => {
-        return StudentEmployedTable().distinct("id").where({
-          student_id,
-        });
-      })
-    );
-  },
-  {
-    cacheMap: new LRUMap(1000),
-  }
-);
 
 export const StudentDataLoader = new DataLoader(
   async (student_ids: readonly string[]) => {
@@ -151,6 +137,21 @@ export const StudentDropoutDataLoader = new DataLoader(
   async (student_ids: readonly string[]) => {
     const dataDict: Dictionary<IStudentDropout | undefined> = keyBy(
       await StudentDropoutTable().whereIn("student_id", student_ids),
+      "student_id"
+    );
+    return student_ids.map((id) => {
+      return dataDict[id];
+    });
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
+
+export const StudentEmployedDataLoader = new DataLoader(
+  async (student_ids: readonly string[]) => {
+    const dataDict: Dictionary<IStudentEmployed | undefined> = keyBy(
+      await StudentEmployedTable().whereIn("student_id", student_ids),
       "student_id"
     );
     return student_ids.map((id) => {

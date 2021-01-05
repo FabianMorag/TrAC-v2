@@ -129,6 +129,10 @@ mutation searchStudent($student_id: String, $program_id: String) {
       model_accuracy
       active
     }
+    employed {
+      employed
+      institution
+    }
   }
 }
 
@@ -155,6 +159,10 @@ query studentsList($program_id: String!) {
     dropout {
       prob_dropout
       explanation
+    }
+    employed {
+      employed
+      institution
     }
   }
 }

@@ -20,6 +20,7 @@ import {
 } from "../../../client/constants";
 import {
   StudentDropoutDataLoader,
+  StudentEmployedDataLoader,
   StudentLastProgramDataLoader,
   StudentListDataLoader,
   StudentProgramsDataLoader,
@@ -35,6 +36,7 @@ import type { $PropertyType } from "utility-types";
 
 import type { IContext } from "../../interfaces";
 import type { Dropout } from "../../entities/data/dropout";
+import type { Employed } from "../../entities/data/employed";
 import type { PartialProgram } from "./program";
 import type { PartialTerm } from "./term";
 
@@ -206,5 +208,17 @@ export class StudentResolver {
     );
 
     return await StudentDropoutDataLoader.load(id);
+  }
+
+  @FieldResolver()
+  async employed(
+    @Root() { id }: PartialStudent
+  ): Promise<Employed | undefined> {
+    assertIsDefined(
+      id,
+      `student id needs to be available for Student field resolvers`
+    );
+
+    return await StudentEmployedDataLoader.load(id);
   }
 }

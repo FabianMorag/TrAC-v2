@@ -3,7 +3,7 @@ import { dbData } from "../";
 export interface IStudentEmployed {
   id: string;
   student_id: string;
-  state: number;
+  employed: boolean;
   institution: string;
   description: string;
 }

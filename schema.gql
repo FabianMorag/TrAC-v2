@@ -63,6 +63,12 @@ A field whose value conforms to the standard internet email address format as sp
 """
 scalar EmailAddress
 
+type Employed {
+  description: String
+  employed: Boolean!
+  institution: String
+}
+
 type FeedbackAnswer {
   answer: String!
   question: FeedbackQuestion!
@@ -250,6 +256,7 @@ enum StateCourse {
 type Student {
   curriculums: [String!]!
   dropout: Dropout
+  employed: Employed!
   id: ID!
   mention: String!
   name: String!

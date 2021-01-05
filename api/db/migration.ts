@@ -75,12 +75,14 @@ const migration = async () => {
     STUDENT_CLUSTER_TABLE,
     STUDENT_COURSE_TABLE,
     STUDENT_DROPOUT_TABLE,
+    STUDENT_EMPLOYED_TABLE,
     STUDENT_PROGRAM_TABLE,
     STUDENT_TABLE,
     STUDENT_TERM_TABLE,
     StudentClusterTable,
     StudentCourseTable,
     StudentDropoutTable,
+    StudentEmployedTable,
     StudentProgramTable,
     StudentTable,
     StudentTermTable,
@@ -378,6 +380,22 @@ const migration = async () => {
               };
             }
           )
+        );
+      }
+    });
+
+  const studentEmployed = dbData.schema
+    .hasTable(STUDENT_EMPLOYED_TABLE)
+    .then(async (exists) => {
+      if (!exists) {
+        await dbData.schema.createTable(STUDENT_EMPLOYED_TABLE, (table) => {
+          table.text("student_id").notNullable().primary();
+          table.boolean("employed").defaultTo(false).notNullable();
+          table.text("institution");
+          table.text("description");
+        });
+        await StudentEmployedTable().insert(
+          (await import("./mockData/student_employed.json")).default
         );
       }
     });
@@ -692,6 +710,7 @@ const migration = async () => {
     student,
     studentCourse,
     studentDropout,
+    studentEmployed,
     studentProgram,
     studentTerm,
     performanceByLoad,

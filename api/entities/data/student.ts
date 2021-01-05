@@ -3,6 +3,7 @@ import { Field, ID, Int, ObjectType } from "type-graphql";
 import { Dropout } from "./dropout";
 import { Program } from "./program";
 import { Term } from "./term";
+import { Employed } from "./employed";
 
 @ObjectType({ simpleResolvers: true })
 export class Student {
@@ -45,4 +46,8 @@ export class Student {
   // student_dropout
   @Field({ nullable: true })
   dropout?: Dropout;
+
+  // student_employed
+  @Field()
+  employed: Employed;
 }
