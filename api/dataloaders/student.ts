@@ -12,8 +12,24 @@ import {
   StudentProgramTable,
   StudentTable,
   StudentTermTable,
+  StudentEmployedTable,
 } from "../db/tables";
 import { TermDataLoader } from "./term";
+
+export const StudentEmployedDataLoader = new DataLoader(
+  async (student_ids: readonly string[]) => {
+    return await Promise.all(
+      student_ids.map((student_id) => {
+        return StudentEmployedTable().distinct("id").where({
+          student_id,
+        });
+      })
+    );
+  },
+  {
+    cacheMap: new LRUMap(1000),
+  }
+);
 
 export const StudentDataLoader = new DataLoader(
   async (student_ids: readonly string[]) => {

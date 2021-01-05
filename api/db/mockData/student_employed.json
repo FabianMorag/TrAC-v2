@@ -1,0 +1,23 @@
+[
+  {
+    "id": "8712",
+    "student_id": "238de40ae2a0e9f417c495e913d56773",
+    "employed": "1",
+    "institution": "Facultad de agronomía UACH",
+    "description": ""
+  },
+  {
+    "id": "1263",
+    "student_id": "6fdb8a7f5bbaf0c68dbca0f5462e866a",
+    "employed": "1",
+    "institution": "Grupo GTD",
+    "description": ""
+  },
+  {
+    "id": "1234",
+    "student_id": "e078c7de4d67798a915801ba7e2539fb",
+    "employed": "0",
+    "institution": "",
+    "description": ""
+  }
+]

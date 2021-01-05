@@ -1,5 +1,20 @@
 import { dbData } from "../";
 
+export interface IStudentEmployed {
+  id: string;
+  student_id: string;
+  state: number;
+  institution: string;
+  description: string;
+}
+
+export const STUDENT_EMPLOYED_TABLE = "student_employed";
+
+export const StudentEmployedTable = () =>
+  dbData<IStudentEmployed>(STUDENT_EMPLOYED_TABLE);
+
+// -------------------------------------------------------------------------------------
+
 export interface ICourse {
   id: string;
   name: string;
@@ -16,6 +31,7 @@ export const COURSE_TABLE = "course";
 export const CourseTable = () => dbData<ICourse>(COURSE_TABLE);
 
 // -------------------------------------------------------------------------------------
+
 export interface ICourseStats {
   course_taken: string;
   year: number;
