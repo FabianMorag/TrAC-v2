@@ -65,8 +65,10 @@ scalar EmailAddress
 
 type Employed {
   description: String
+  educational_system: String
   employed: Boolean!
   institution: String
+  months_to_first_job: Float
 }
 
 type FeedbackAnswer {

@@ -132,6 +132,8 @@ mutation searchStudent($student_id: String, $program_id: String) {
     employed {
       employed
       institution
+      educational_system
+      months_to_first_job
     }
   }
 }
@@ -163,6 +165,8 @@ query studentsList($program_id: String!) {
     employed {
       employed
       institution
+      educational_system
+      months_to_first_job
     }
   }
 }

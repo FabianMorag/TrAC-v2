@@ -5918,6 +5918,12 @@ const data: {
         model_accuracy: 0.82,
         active: true,
       },
+      employed: {
+        employed: true,
+        educational_system: "Sistema educacional chileno",
+        institution: "Liceo Recto Armando Robles",
+        months_to_first_job: 15,
+      },
     },
   },
 

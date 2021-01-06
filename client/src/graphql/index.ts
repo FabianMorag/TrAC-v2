@@ -72,8 +72,10 @@ export type Dropout = {
 
 export type Employed = {
   description?: Maybe<Scalars["String"]>;
+  educational_system?: Maybe<Scalars["String"]>;
   employed: Scalars["Boolean"];
   institution?: Maybe<Scalars["String"]>;
+  months_to_first_job?: Maybe<Scalars["Float"]>;
 };
 
 export type FeedbackAnswer = {
@@ -692,7 +694,13 @@ export type SearchStudentMutation = {
       dropout?: Maybe<
         Pick<Dropout, "prob_dropout" | "model_accuracy" | "active">
       >;
-      employed: Pick<Employed, "employed" | "institution">;
+      employed: Pick<
+        Employed,
+        | "employed"
+        | "institution"
+        | "educational_system"
+        | "months_to_first_job"
+      >;
     }
   >;
 };
@@ -722,7 +730,13 @@ export type StudentsListQuery = {
   students: Array<
     Pick<Student, "id" | "progress" | "start_year"> & {
       dropout?: Maybe<Pick<Dropout, "prob_dropout" | "explanation">>;
-      employed: Pick<Employed, "employed" | "institution">;
+      employed: Pick<
+        Employed,
+        | "employed"
+        | "institution"
+        | "educational_system"
+        | "months_to_first_job"
+      >;
     }
   >;
 };
@@ -2027,6 +2041,8 @@ export const SearchStudentDocument = gql`
       employed {
         employed
         institution
+        educational_system
+        months_to_first_job
       }
     }
   }
@@ -2228,6 +2244,8 @@ export const StudentsListDocument = gql`
       employed {
         employed
         institution
+        educational_system
+        months_to_first_job
       }
     }
   }

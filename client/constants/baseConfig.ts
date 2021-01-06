@@ -20,6 +20,12 @@ export const baseConfig = {
     "El sistema estima un percentil de riesgo de abandono",
   DROPOUT_TEXT_COLOR: "black",
   ENTRY_YEAR_LABEL: "Ingreso",
+  EMPLOYED_BACKGROUND_COLOR: "rgb(165,206,252)",
+  EMPLOYED_INFORMATION: "Datos de empleabilidad",
+  EMPLOYED_EDUCATIONAL_SYSTEM: "Sistema educacional:",
+  EMPLOYED_INSTITUTION: "Nombre de institución:",
+  EMPLOYED_MONTHS: "Meses hasta encontrar trabajo:",
+  EMPLOYED_TEXT_COLOR: "black",
   ERROR_PROGRAM_NOT_FOUND: "Programa especificado no pudo ser encontrado.",
   ERROR_PROGRAM_UNAUTHORIZED_MESSAGE:
     "No está autorizado para ver el programa especificado",

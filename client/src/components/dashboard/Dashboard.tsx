@@ -51,6 +51,7 @@ import { useUser } from "../../utils/useUser";
 import { ToggleDarkMode } from "../DarkMode";
 import {
   Dropout,
+  Employed,
   ForeplanModeSwitch,
   ForeplanSummary,
 } from "../DynamicComponents";
@@ -378,9 +379,11 @@ export function Dashboard() {
     TakenSemestersComponent,
     SemestersComponent,
     DropoutComponent,
+    EmployedComponent,
   } = useMemo(() => {
     let TimeLineComponent: JSX.Element | null = null;
     let DropoutComponent: JSX.Element | null = null;
+    let EmployedComponent: JSX.Element | null = null;
     let TakenSemestersComponent: JSX.Element | null = null;
     let SemestersComponent: JSX.Element | null = null;
 
@@ -451,6 +454,13 @@ export function Dashboard() {
           <Dropout
             probability={studentData.dropout.prob_dropout}
             accuracy={studentData.dropout.model_accuracy}
+          />
+        );
+        EmployedComponent = (
+          <Employed
+            educational_system={studentData.employed.educational_system}
+            institution={studentData.employed.institution}
+            months_to_first_job={studentData.employed.months_to_first_job}
           />
         );
       }
@@ -552,6 +562,7 @@ export function Dashboard() {
     return {
       TimeLineComponent,
       DropoutComponent,
+      EmployedComponent,
       TakenSemestersComponent,
       SemestersComponent,
     };
@@ -710,8 +721,9 @@ export function Dashboard() {
 
       <ScrollContainer activationDistance={5} hideScrollbars={false}>
         <Flex>
-          <Box>{TimeLineComponent}</Box>
           {DropoutComponent}
+          {EmployedComponent}
+          <Box>{TimeLineComponent}</Box>
           {user?.config.FOREPLAN && <ForeplanSummary />}
         </Flex>
 

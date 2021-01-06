@@ -392,6 +392,8 @@ const migration = async () => {
           table.text("student_id").notNullable().primary();
           table.boolean("employed").defaultTo(false).notNullable();
           table.text("institution");
+          table.text("educational_system");
+          table.integer("months_to_first_job");
           table.text("description");
         });
         await StudentEmployedTable().insert(
